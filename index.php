@@ -55,7 +55,7 @@ if(!isset($_SESSION['username'])){
         <div class="container-fluid">
           <a class="navbar-brand" href="index.php">
           <i class="fa fa-book" aria-hidden="true"></i>
-            Buku Tahunan
+            Buku Tahuna
           </a>
           <table cellspacing="100" cellpadding="2">
         <tr>
