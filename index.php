@@ -41,7 +41,7 @@ if(!isset($_SESSION['username'])){
 <script type="text/javascript" src="datatables/datatables.js"></script>
 <script sec="js/Chart.js"></script>
 
-    <title>Document</title>
+    <title>index</title>
 </head>
 
         <script type="text/javascript">
@@ -88,7 +88,7 @@ if(!isset($_SESSION['username'])){
           <p>Berisi data yang sudah disimpan di database.</p>
         </blockquote>
         <figcaption class="blockquote-footer">
-          Buku Tahunan <cite title="Source Title">hehe</cite>
+          Buku Tahunan <cite title="Source Title">berisi quotes para manusia absurd</cite>
         </figcaption>
       </figure>
       <a href="kelola.php" type="button" class="btn btn-primary mb-3">
