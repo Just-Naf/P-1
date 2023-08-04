@@ -129,9 +129,9 @@ if(!isset($_SESSION['username'])){
               ?>
           ],
           backgroundColor: [
-                'rgb(231, 76, 60 )',
-                'rgb(12, 123, 321)',
-                'rgb(165, 105, 189)'
+                'rgb(555, 76, 60 )',
+                'rgb(12, 323, 321)',
+                'rgb(522, 105, 189)'
                 ],
                 hoverOffset: 4
         }]
@@ -162,9 +162,9 @@ if(!isset($_SESSION['username'])){
               ?>
           ],
           backgroundColor: [
-                'rgb(231, 76, 60 )',
-                'rgb(12, 123, 321)',
-                'rgb(165, 105, 189)'
+                'rgb(123, 76, 60 )',
+                'rgb(333, 123, 321)',
+                'rgb(130, 105, 189)'
                 ],
                 hoverOffset: 4
         }]
