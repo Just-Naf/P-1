@@ -34,9 +34,7 @@ if(!isset($_SESSION['username'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-
 <link rel="stylesheet" href="fontawesome/css/font-awesome.min.css">
-
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 <script type="text/javascript" src="datatables/datatables.js"></script>
 <script sec="js/Chart.js"></script>
@@ -58,9 +56,9 @@ if(!isset($_SESSION['username'])){
             Buku Tahunan
           </a>
           <table cellspacing="100" cellpadding="2">
-        <tr>
-            <th>Jenis kelamin</th>
-        </tr>
+            <tr>
+              <th>Jenis kelamin</th>
+            </tr>
         <?php
           $total=0;
         while ($row = mysqli_fetch_assoc($result)) {
@@ -70,31 +68,32 @@ if(!isset($_SESSION['username'])){
             echo "<td><b>" . number_format ($row['jumlah']) . "</b></td>";
             echo "</tr>";
         }
-        ?>
+        ?>       
+
         <tr>
           <td>Jumlah</td>
           <td><b><?php echo number_format($total);?></b></td>
-          <a style="position: absolute; top: 6em; right: 10em;" type="button" class="btn btn-info" href="chat.php">Diagram</a>
         </tr>
+          <a style="position: absolute; top: 6em; right: 10em;" type="button" class="btn btn-info" href="chat.php">Diagram</a>
     </table>
-        </div>
-      </nav>
+  </div>
+</nav>
 
-      <!-- Judul -->
-      <div class="container-fluid">
-        <h1 class="mt-3"> Buku Tahunan</h1>
-      <figure>
-        <blockquote class="blockquote">
-          <p>Berisi data yang sudah disimpan di database.</p>
-        </blockquote>
-        <figcaption class="blockquote-footer">
-          Buku Tahunan <cite title="Source Title">berisi quotes para manusia absurd</cite>
-        </figcaption>
-      </figure>
-      <a href="kelola.php" type="button" class="btn btn-primary mb-3">
-        <i class="fa fa-plus"></i>
-        Tambah Data
-    </a>
+<!-- Judul -->
+<div class="container-fluid">
+  <h1 class="mt-3"> Buku Tahunan</h1>
+  <figure>
+    <blockquote class="blockquote">
+      <p>Berisi data yang sudah disimpan di database.</p>
+    </blockquote>
+    <figcaption class="blockquote-footer">
+      Buku Tahunan <cite title="Source Title">berisi quotes para manusia absurd</cite>
+    </figcaption>
+  </figure>
+          <a href="kelola.php" type="button" class="" style='background: rgba( 30, 144, 255, 1 ); display: block; width: 50px; height: 50px; line-height: 50px; z-index: 3; font-size: 25px; text-align: center; color: white; border-radius: 25%; -webkit-border-radius: 25%; transition: ease all 0.3s; position: fixed; right: 30px; bottom:30px;'>
+              <i class="fa fa-plus"></i>
+          </a>
+
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a type="button" class="btn btn-danger" class="nav-link active" aria-current="page" href="logout.php">

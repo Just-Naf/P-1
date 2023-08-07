@@ -27,7 +27,7 @@ if(!isset($_SESSION['username'])){
 <body>
     <a style="position: absolute; top: 2em; left: 2em;" href="index.php" type="button" class="btn btn-danger">
     <i class="fa fa-reply" aria-hidden="true"></i></a>
-    <h1 class="text-center mb-5">Diagram Data Murid</h1>
+    <h1 class="text-center mb-5 mt-4">Diagram Data Murid</h1>
     <section>
         <div class="row">
             <div class="col">
@@ -60,149 +60,108 @@ if(!isset($_SESSION['username'])){
 
     
 
-    <div style="width: 400px; height: 400px; position: absolute; top: 8em; right: 58em;">
+    <div style="width: 500px; height: 500px; position: absolute; top: 8em; right: 45em;">
     <canvas id="grafik"></canvas>
   </div>
-  <div style="width: 500px; height: 250px; position: absolute; top: 38em; right: 55em;">
+  <div style="width: 400px; height: 400px; position: absolute; top: 32em; right: 48em;">
     <canvas id="grafik2"></canvas>
   </div>
-  <div style="width: 500px; height: 400px; position: absolute; top: 68em; right: 52em;">
+  <div style="width: 450px; height: 450px; position: absolute; top: 65em; right: 47em;">
     <canvas id="grafik3"></canvas>
   </div>
   <div style="width: 500px; height: 400px; position: absolute; top: 68em; right: 2em;">
     <canvas id="grafik4"></canvas>
   </div>
-  <script>
-    var ctx =document.getElementById("grafik").getContext('2d');
-    var myChart = new Chart(ctx, {
-      type:'pie',
-      data:{
-        labels : ["gundam","laki-laki","perempuan"],
-        datasets :[{
-          label:'Data',
-          data:[
-            <?php
-                  include "koneksi.php";
-                  $gundam = mysqli_query($GLOBALS['conn'],"SELECT * FROM tb_siswa WHERE jenis_kelamin='gundam'");
-                  echo mysqli_num_rows($gundam);
-                ?>,
-            <?php
-                $laki = mysqli_query($GLOBALS['conn'],"SELECT * FROM tb_siswa WHERE jenis_kelamin='laki-laki'");
-                echo mysqli_num_rows($laki);
-              ?>,
-            <?php
-                $perempuan = mysqli_query($GLOBALS['conn'],"SELECT * FROM tb_siswa WHERE jenis_kelamin='perempuan'");
-                echo mysqli_num_rows($perempuan);
-              ?>
-          ],
-          backgroundColor: [
-                'rgb(231, 76, 60 )',
-                'rgb(12, 123, 321)',
-                'rgb(165, 105, 189)'
-                ],
-                hoverOffset: 4
-        }]
-      }
+    <?php
+        include 'koneksi.php';
+    //Query untuk menampilkan tabel jenis kelamin
+        $nama_jk= "";
+        $jumlah=null;
+
+        $sql="SELECT jenis_kelamin,COUNT(*) as 'total' FROM tb_siswa GROUP by jenis_kelamin";
+
+    $hasil=mysqli_query($conn,$sql);
+
+    while ($data = mysqli_fetch_array($hasil)) {
+        $jk=$data['jenis_kelamin'];
+        $nama_jk .= "'$jk'". ", ";
+
+        $jum=$data['total'];
+        $jumlah .= "$jum". ", ";
+    }
+    //Query untuk menampilkan tabel mahasiswa2
+
+    ?>
+<script>
+    var ctx = document.getElementById('grafik').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'bar',
+
+        // The data for our dataset
+        data: {
+            labels: [<?php echo $nama_jk; ?>],
+            datasets: [{
+                label:'Data Jenis Kelamin',
+                backgroundColor: ['rgba(225, 0, 0, 0.5)', 'rgb( 0, 0, 252, 0.5)','rgb(255, 105, 180, 0.5)'],
+                borderColor: ['rgb(255, 99, 132)'],
+                data: [<?php echo $jumlah; ?>]
+            },
+            ]
+        },
+    })
+    var ctx = document.getElementById('grafik2').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'doughnut',
+
+        // The data for our dataset
+        data: {
+            labels: [<?php echo $nama_jk; ?>],
+            datasets: [{
+                label:'Data Jenis Kelamin',
+                backgroundColor: ['rgba(225, 0, 0, 0.8)', 'rgb( 0, 0, 252, 0.8)','rgb(255, 105, 180, 0.8)'],
+                borderColor: ['rgb(255, 99, 132)'],
+                data: [<?php echo $jumlah; ?>]
+            },
+            ]
+        },
+    })
+    var ctx = document.getElementById('grafik3').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'polarArea',
+
+        // The data for our dataset
+        data: {
+            labels: [<?php echo $nama_jk; ?>],
+            datasets: [{
+                label:'Data Jenis Kelamin',
+                backgroundColor: ['rgba(225, 0, 0, 0.7)', 'rgb( 0, 0, 252, 0.7)','rgb(255, 105, 180, 0.7)'],
+                borderColor: ['rgb(255, 99, 132)'],
+                data: [<?php echo $jumlah; ?>]
+            },
+            ]
+        },
+    })
+    var ctx = document.getElementById('grafik4').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'pie',
+
+        // The data for our dataset
+        data: {
+            labels: [<?php echo $nama_jk; ?>],
+            datasets: [{
+                label:'Data Jenis Kelamin',
+                backgroundColor: ['rgba(225, 0, 0, 0.85)', 'rgb( 0, 0, 252, 0.85)','rgb(255, 105, 180, 0.85)'],
+                borderColor: ['rgba(225, 0, 0)', 'rgb( 0, 0, 252)','rgb(255, 105, 180)'],
+                data: [<?php echo $jumlah; ?>]
+            },
+            ]
+        },
     })
     </script>
-  <script>
-    var ctx =document.getElementById("grafik2").getContext('2d');
-    var myChart = new Chart(ctx, {
-      type:'bar',
-      data:{
-        labels : ["gundam","laki-laki","perempuan"],
-        datasets :[{
-          label:'Data',
-          data:[
-            <?php
-                  include "koneksi.php";
-                  $gundam = mysqli_query($GLOBALS['conn'],"SELECT * FROM tb_siswa WHERE jenis_kelamin='gundam'");
-                  echo mysqli_num_rows($gundam);
-                ?>,
-            <?php
-                $laki = mysqli_query($GLOBALS['conn'],"SELECT * FROM tb_siswa WHERE jenis_kelamin='laki-laki'");
-                echo mysqli_num_rows($laki);
-              ?>,
-            <?php
-                $perempuan = mysqli_query($GLOBALS['conn'],"SELECT * FROM tb_siswa WHERE jenis_kelamin='perempuan'");
-                echo mysqli_num_rows($perempuan);
-              ?>
-          ],
-          backgroundColor: [
-                'rgb(555, 76, 60 )',
-                'rgb(12, 323, 321)',
-                'rgb(522, 105, 189)'
-                ],
-                hoverOffset: 4
-        }]
-      }
-    })
-    </script>
-  <script>
-    var ctx =document.getElementById("grafik3").getContext('2d');
-    var myChart = new Chart(ctx, {
-      type:'polarArea',
-      data:{
-        labels : ["gundam","laki-laki","perempuan"],
-        datasets :[{
-          label:'Data',
-          data:[
-            <?php
-                  include "koneksi.php";
-                  $gundam = mysqli_query($GLOBALS['conn'],"SELECT * FROM tb_siswa WHERE jenis_kelamin='gundam'");
-                  echo mysqli_num_rows($gundam);
-                ?>,
-            <?php
-                $laki = mysqli_query($GLOBALS['conn'],"SELECT * FROM tb_siswa WHERE jenis_kelamin='laki-laki'");
-                echo mysqli_num_rows($laki);
-              ?>,
-            <?php
-                $perempuan = mysqli_query($GLOBALS['conn'],"SELECT * FROM tb_siswa WHERE jenis_kelamin='perempuan'");
-                echo mysqli_num_rows($perempuan);
-              ?>
-          ],
-          backgroundColor: [
-                'rgb(123, 76, 60 )',
-                'rgb(333, 123, 321)',
-                'rgb(130, 105, 189)'
-                ],
-                hoverOffset: 4
-        }]
-      }
-    })
-    </script>
-  <script>
-    var ctx =document.getElementById("grafik4").getContext('2d');
-    var myChart = new Chart(ctx, {
-      type:'doughnut',
-      data:{
-        labels : ["gundam","laki-laki","perempuan"],
-        datasets :[{
-          label:'Data',
-          data:[
-            <?php
-                  include "koneksi.php";
-                  $gundam = mysqli_query($GLOBALS['conn'],"SELECT * FROM tb_siswa WHERE jenis_kelamin='gundam'");
-                  echo mysqli_num_rows($gundam);
-                ?>,
-            <?php
-                $laki = mysqli_query($GLOBALS['conn'],"SELECT * FROM tb_siswa WHERE jenis_kelamin='laki-laki'");
-                echo mysqli_num_rows($laki);
-              ?>,
-            <?php
-                $perempuan = mysqli_query($GLOBALS['conn'],"SELECT * FROM tb_siswa WHERE jenis_kelamin='perempuan'");
-                echo mysqli_num_rows($perempuan);
-              ?>
-          ],
-          backgroundColor: [
-                'rgb(231, 76, 60 )',
-                'rgb(12, 123, 321)',
-                'rgb(165, 105, 189)'
-                ],
-                hoverOffset: 4
-        }]
-      }
-    })
-    </script>
+   
 </body>
 </html>
